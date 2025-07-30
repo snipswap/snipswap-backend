@@ -13,6 +13,8 @@ from src.models.privacy_session import PrivacySession
 from src.routes.user import user_bp
 from src.routes.trading import trading_bp
 from src.routes.privacy import privacy_bp
+from src.routes.market_routes import market_bp
+from src.services.market_data import market_service
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = 'snipswap_privacy_dex_secret_key_2024'
@@ -24,6 +26,7 @@ CORS(app)
 app.register_blueprint(user_bp, url_prefix='/api')
 app.register_blueprint(trading_bp, url_prefix='/api/trading')
 app.register_blueprint(privacy_bp, url_prefix='/api/privacy')
+app.register_blueprint(market_bp, url_prefix='/api')
 
 # uncomment if you need to use database
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
@@ -96,5 +99,9 @@ if __name__ == '__main__':
     print("🔒 Privacy features enabled")
     print("🌐 CORS enabled for frontend integration")
     print("📊 Cosmos ecosystem trading pairs loaded")
+    
+    # Start live market data updates                     # ← ADD THIS
+    market_service.start_live_updates()                  # ← ADD THIS
+    print("📈 Live market data service started")         # ← ADD THIS
+    
     app.run(host='0.0.0.0', port=5000, debug=True)
-
