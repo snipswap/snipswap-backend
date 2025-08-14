@@ -185,7 +185,7 @@ const orderResponse = await fetch('/api/trading/orders', {
 
 ## 📄 License
 
-MIT License - see LICENSE file for details
+GNU GPLv3 - see LICENSE file for details
 
 ## 🔗 Links
 
