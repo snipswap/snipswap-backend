@@ -19,10 +19,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r dex-backend-upload/requirements.txt
 
-    - - name: Syntax check
+      - name: Syntax check
         run: |
-                python -m compileall dex-backend-upload/src
-               
+          python -m compileall dex-backend-upload/src
 
       - name: Placeholder tests
         run: |
