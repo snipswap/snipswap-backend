@@ -1,6 +1,9 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -8,12 +11,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions-rs/toolchain@v1
+      # Set up Python
+      - uses: actions/setup-python@v4
         with:
-          toolchain: stable
+          python-version: '3.11'
 
-      - run: cargo fmt --all --check
-      - run: cargo clippy --all-features -- -D warnings
-      - run: cargo test --all-features
+      - name: Install dependencies
+        run: pip install -r dex-backend-upload/requirements.txt
 
-      - uses: rustsec/audit-check@v1
+      - name: Lint Python code
+        run: |
+          pip install flake8 black
+          flake8 dex-backend-upload
+          black --check dex-backend-upload
+
+      - name: Placeholder tests
+        run: |
+          echo "Running backend tests..."
+          # Add your test commands here once tests exist
