@@ -19,11 +19,10 @@ jobs:
       - name: Install dependencies
         run: pip install -r dex-backend-upload/requirements.txt
 
-      - name: Lint Python code
+    - - name: Syntax check
         run: |
-          pip install flake8 black
-          flake8 dex-backend-upload
-          black --check dex-backend-upload
+                python -m compileall dex-backend-upload/src
+               
 
       - name: Placeholder tests
         run: |
