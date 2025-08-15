@@ -26,7 +26,7 @@ CORS(app)
 app.register_blueprint(user_bp, url_prefix='/api')
 app.register_blueprint(trading_bp, url_prefix='/api/trading')
 app.register_blueprint(privacy_bp, url_prefix='/api/privacy')
-app.register_blueprint(market_bp, url_prefix='/api')
+app.register_blueprint(market_data_bp, url_prefix='/api')
 
 # uncomment if you need to use database
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
