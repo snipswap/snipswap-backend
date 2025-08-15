@@ -14,7 +14,7 @@ from src.routes.user import user_bp
 from src.routes.trading import trading_bp
 from src.routes.privacy import privacy_bp
 from src.routes.market_routes import market_data_bp
-from src.services.market_data import market_service
+from src.services.market_data import MarketDataService
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = 'snipswap_privacy_dex_secret_key_2024'
